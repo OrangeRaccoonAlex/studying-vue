@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <user-list :users="users"></user-list>
+        <user-form :users="users"></user-form>
+    </div>
+
+    <template id="user-list">
+        <div>
+            <h1>Hello Timur!</h1>
+            <ul>
+                <li v-for="user in users" :key="user.id">{{ user.name }} {{ user.surname }}</li>
+            </ul>
+        </div>
+    </template>
+
+    <template id="user-form">
+        <div>
+            <h1>Hello Sasha!</h1>
+            <input v-model="users" />
+        </div>
+    </template>
+
+</body>
+<script>
+    const UserList = {
+        template: '#user-list',
+        name: 'UserList',
+        props: {
+            users: {
+                type: Array,
+                requared: true,
+            },
+        },
+    };
+    const UserForm = {
+        template: '#user-form',
+        name: 'UserForm',
+        props: {
+            users: {
+                type: Array,
+                requared: true,
+            },
+        },
+    };
+
+    const vue = new Vue({
+        el: '#app',
+        components: {
+            'user-list': UserList,
+            'user-form': UserForm,
+        },
+        data() {
+            return {
+                users: [],
+            };
+        },
+        created() {
+            this.users = [
+                {
+                    id: 0,
+                    name: "Гермина",
+                    surname: "Греинджер",
+                    patronymic: "Ивановна",
+                    avatar: "https://kulturologia.ru/files/u8921/kids-in-film-02.jpg",
+                },
+                {
+                    id: 1,
+                    name: "Данте",
+                    surname: "Демон",
+                    patronymic: "Спардович",
+                    avatar: "https://static-prod.weplay.tv/2019-03-08/42c121e1c753c8866e1ab67ef1ffcdd3_large_cover.jpeg",
+                },
+                {
+                    id: 2,
+                    name: "Леон",
+                    surname: "Кеннеди",
+                    patronymic: "Леонидович",
+                    avatar: "https://vignette.wikia.nocookie.net/residentevil/images/0/0b/Leon6.jpg/revision/latest/top-crop/width/300/height/300?cb=20130812105551&path-prefix=ru",
+                },
+                {
+                    id: 3,
+                    name: "Ержан",
+                    surname: "Баранович",
+                    patronymic: "Иванович",
+                    avatar: "",
+                },
+                {
+                    id: 4,
+                    name: "Кикимора",
+                    surname: "Болотнова",
+                    patronymic: "Кикимировна",
+                    avatar: "",
+                },
+            ];
+        },
+        watch: {
+            users(newVal, oldVal) {
+                console.warn('данные изменились');
+            }
+        },
+    })
+</script>
+
+</html>
