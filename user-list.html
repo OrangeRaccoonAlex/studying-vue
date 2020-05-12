@@ -11,7 +11,6 @@
 <body>
     <div id="app">
         <user-list :users="users"></user-list>
-        <user-form :users="users"></user-form>
     </div>
 
     <template id="user-list">
@@ -20,13 +19,6 @@
             <ul>
                 <li v-for="user in users" :key="user.id">{{ user.name }} {{ user.surname }}</li>
             </ul>
-        </div>
-    </template>
-
-    <template id="user-form">
-        <div>
-            <h1>Hello Sasha!</h1>
-            <input v-model="users" />
         </div>
     </template>
 
@@ -42,22 +34,11 @@
             },
         },
     };
-    const UserForm = {
-        template: '#user-form',
-        name: 'UserForm',
-        props: {
-            users: {
-                type: Array,
-                requared: true,
-            },
-        },
-    };
 
     const vue = new Vue({
         el: '#app',
         components: {
             'user-list': UserList,
-            'user-form': UserForm,
         },
         data() {
             return {

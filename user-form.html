@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Hello Sasha!</h1>
+        <user-form :user="user" v-for="user in users" :key="user.id"></user-form>
+    </div>
+
+    <template id="user-form">
+        <div>
+            <input v-model="user.name" />
+            <input v-model="user.surname" />
+        </div>
+    </template>
+
+</body>
+<script>
+    const UserForm = {
+        template: '#user-form',
+        name: 'UserForm',
+        props: {
+            user: {
+                type: Object,
+                requared: true,
+            },
+        },
+    };
+
+    const vue = new Vue({
+        el: '#app',
+        components: {
+            'user-form': UserForm,
+        },
+        data() {
+            return {
+                users: [
+                    {
+                        id: 0,
+                        name: "Гермина",
+                        surname: "Греинджер",
+                        patronymic: "Ивановна",
+                        avatar: "https://kulturologia.ru/files/u8921/kids-in-film-02.jpg",
+                    },
+                    {
+                        id: 1,
+                        name: "Данте",
+                        surname: "Демон",
+                        patronymic: "Спардович",
+                        avatar: "https://static-prod.weplay.tv/2019-03-08/42c121e1c753c8866e1ab67ef1ffcdd3_large_cover.jpeg",
+                    },
+                    {
+                        id: 2,
+                        name: "Леон",
+                        surname: "Кеннеди",
+                        patronymic: "Леонидович",
+                        avatar: "https://vignette.wikia.nocookie.net/residentevil/images/0/0b/Leon6.jpg/revision/latest/top-crop/width/300/height/300?cb=20130812105551&path-prefix=ru",
+                    },
+                    {
+                        id: 3,
+                        name: "Ержан",
+                        surname: "Баранович",
+                        patronymic: "Иванович",
+                        avatar: "",
+                    },
+                    {
+                        id: 4,
+                        name: "Кикимора",
+                        surname: "Болотнова",
+                        patronymic: "Кикимировна",
+                        avatar: "",
+                    },
+                ],
+            };
+        },
+    })
+</script>
+
+</html>
